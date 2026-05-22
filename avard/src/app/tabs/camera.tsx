@@ -3,6 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, AppState } from 'react-native';
 import * as Linking from 'expo-linking';
 
+import * as SQLite from 'expo-sqlite';
+import { getDB } from '../../db/database';
+import { createTable } from '../../db/schema';
+import * as CRUD from '../../db/crud';
+
 export default function App() {
   // const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
@@ -41,9 +46,13 @@ export default function App() {
         <CameraView style={styles.camera} barcodeScannerSettings={{barcodeTypes: ["qr"]}} 
         onBarcodeScanned={({data}) => {
           if(data && !qrLock.current){
+            getDB();
+            createTable();
             qrLock.current = true;
           setTimeout( async () => {
-            await Linking.openURL(data);}, 500 );
+            // await Linking.openURL(data);}, 500 );
+            console.log(data);
+            await CRUD.insertURL(data);}, 500 );
           }
 }} />
       <View style={styles.buttonContainer}>
