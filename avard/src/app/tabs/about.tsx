@@ -1,11 +1,18 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Linking } from "react-native";
 
 export default function AboutScreen() {
   return (
     <View style={styles.container}>
       <Text>
-        Aqui voce vai saber tudo sobre o app
-      </Text>
+        Aplicativo desenvolvido para a matéria extensionista de desenvolvimento mobile.
+        {'\n'}
+        {'\n'}
+     </Text>
+      <Text>Para duvidas, questões, ou informações do código, por favor, visite a nossa página do github:
+          {'\n'}
+          {'\n'}
+ </Text>
+      <Text> Página do Github (https://github.com/kneeshe/proj_and) </Text>
     </View>
   );
 }

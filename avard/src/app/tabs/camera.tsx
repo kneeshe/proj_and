@@ -2,8 +2,9 @@ import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, AppState } from 'react-native';
 import * as Linking from 'expo-linking';
+import { insertData } from '../../db/database';
 
-export default function App() {
+export default function Camera() {
   // const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const qrLock = useRef(false);
@@ -32,10 +33,6 @@ export default function App() {
     );
   }
 
-  // function toggleCameraFacing() {
-    // setFacing(current => (current === 'back' ? 'front' : 'back'));
-  // }
-
   return (
     <View style={styles.container}>
         <CameraView style={styles.camera} barcodeScannerSettings={{barcodeTypes: ["qr"]}} 
@@ -45,6 +42,7 @@ export default function App() {
           setTimeout( async () => {
             // await Linking.openURL(data);}, 500 );
             console.log(data);}, 500 );
+            insertData(data);
           }
 }} />
       <View style={styles.buttonContainer}>
