@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, AppState } from 'react-native';
 import * as Linking from 'expo-linking';
 import { insertData } from '../../db/database';
+import { globalStyle } from "../../ux/avard_style";
+
 
 export default function Camera() {
   // const [facing, setFacing] = useState<CameraType>('back');
@@ -34,8 +36,8 @@ export default function Camera() {
   }
 
   return (
-    <View style={styles.container}>
-        <CameraView style={styles.camera} barcodeScannerSettings={{barcodeTypes: ["qr"]}} 
+    <View style={globalStyle.catppuccin}>
+        <CameraView style={globalStyle.catCamera} barcodeScannerSettings={{barcodeTypes: ["qr"]}} 
         onBarcodeScanned={({data}) => {
           if(data && !qrLock.current){
             qrLock.current = true;

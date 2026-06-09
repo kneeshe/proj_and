@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, FlatList, } from "react-native";
 import { SafeAreaView, SafeAreaProvider, } from 'react-native-safe-area-context';
+import { globalStyle } from "../../ux/avard_style";
 import { useEffect, useState } from "react";
 import { readData } from "@/db/database";
 
@@ -16,8 +17,8 @@ export default function List() {
   );
 
   return (
-    <View style={styles.container}>
-      <Text>AQUI VAI TER UMA LISTA... EVENTUALMENTE</Text>
+    <View style={globalStyle.catppuccin}>
+      <Text style={globalStyle.catText}>{'\n'}{'\n'}AQUI VAI TER UMA LISTA... EVENTUALMENTE{'\n'}{'\n'}</Text>
       <SafeAreaProvider>
       <SafeAreaView>
         <FlatList
